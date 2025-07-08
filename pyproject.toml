@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "batch_etl"
+version = "0.1.0"
+description = "CSV → Parquet → DuckDB starter CLI"
+packages = [{ include = "etl" }]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pandas = "^2.2"
+duckdb = "^0.10"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2"
+black = "^24.4"
+ruff = "^0.4"
+pre-commit = "^3.7"
+typer = { extras = ["all"], version = "^0.12" }  # or click
