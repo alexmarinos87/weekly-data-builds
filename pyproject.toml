@@ -5,7 +5,7 @@ description = "CSV → Parquet → DuckDB starter CLI"
 packages = [{ include = "etl" }]
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = ">=3.12,<3.14"
 pandas = "^2.2"
 duckdb = "^0.10"
 
