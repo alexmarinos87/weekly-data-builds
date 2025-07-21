@@ -10,7 +10,9 @@ def run(
     db: Path = typer.Option("data/duckdb/batch.db", help="DuckDB path"),
     table: str = typer.Option("batch_stage"),
 ):
-    pq = csv_to_parquet(src, src.parent / "staging")
+    staging_dir = src.parent / "staging"
+    staging_dir.mkdir(parents=True, exist_ok=True)
+    pq = csv_to_parquet(src, staging_dir / src.with_suffix(".parquet").name)
     parquet_to_duck(db, pq, table)
     typer.echo(f"Loaded {src.name} ➜ {table} in {db}")
 
