@@ -1,0 +1,74 @@
+[0m19:52:36.524332 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000209DFDB30E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000209E0944050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000209E0F77D90>]}
+
+
+============================== 19:52:36.608282 | d20b9abd-713f-406c-9d85-c9a0a54d9639 ==============================
+[0m19:52:36.608282 [info ] [MainThread]: Running with dbt=1.10.4
+[0m19:52:36.612929 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\alexm\\.dbt', 'debug': 'False', 'fail_fast': 'False', 'log_path': 'logs', 'warn_error': 'None', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'invocation_command': 'dbt init analytics_warehouse', 'introspect': 'True', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'True'}
+[0m19:52:36.773795 [info ] [MainThread]: Creating dbt configuration folder at C:\Users\alexm\.dbt
+[0m19:52:36.807689 [debug] [MainThread]: Starter project path: C:\Users\alexm\AppData\Local\Programs\Python\Python313\Lib\site-packages\dbt\include\starter_project
+[0m19:52:37.023877 [info ] [MainThread]: 
+Your new dbt project "analytics_warehouse" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m19:52:37.028529 [info ] [MainThread]: Setting up your profile.
+[0m19:56:25.674769 [error] [MainThread]: Encountered an error:
+
+[0m19:56:25.953471 [error] [MainThread]: Traceback (most recent call last):
+  File "C:\Users\alexm\AppData\Local\Programs\Python\Python313\Lib\site-packages\dbt\cli\requires.py", line 161, in wrapper
+    result, success = func(*args, **kwargs)
+                      ~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\alexm\AppData\Local\Programs\Python\Python313\Lib\site-packages\dbt\cli\requires.py", line 111, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\alexm\AppData\Local\Programs\Python\Python313\Lib\site-packages\dbt\cli\main.py", line 483, in init
+    results = task.run()
+  File "C:\Users\alexm\AppData\Local\Programs\Python\Python313\Lib\site-packages\dbt\task\init.py", line 346, in run
+    self.setup_profile(profile_name)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\alexm\AppData\Local\Programs\Python\Python313\Lib\site-packages\dbt\task\init.py", line 262, in setup_profile
+    self.create_profile_from_target(adapter, profile_name=profile_name)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alexm\AppData\Local\Programs\Python\Python313\Lib\site-packages\dbt\task\init.py", line 179, in create_profile_from_target
+    self.create_profile_from_profile_template(profile_template, profile_name)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alexm\AppData\Local\Programs\Python\Python313\Lib\site-packages\dbt\task\init.py", line 163, in create_profile_from_profile_template
+    target = self.generate_target_from_input(prompts, initial_target)
+  File "C:\Users\alexm\AppData\Local\Programs\Python\Python313\Lib\site-packages\dbt\task\init.py", line 129, in generate_target_from_input
+    target[key] = click.prompt(
+                  ~~~~~~~~~~~~^
+        text, default=default, hide_input=hide_input, type=type
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\alexm\AppData\Local\Programs\Python\Python313\Lib\site-packages\click\termui.py", line 168, in prompt
+    value = prompt_func(prompt)
+  File "C:\Users\alexm\AppData\Local\Programs\Python\Python313\Lib\site-packages\click\termui.py", line 151, in prompt_func
+    raise Abort() from None
+click.exceptions.Abort
+
+[0m19:56:25.959449 [debug] [MainThread]: Command `dbt init` failed at 19:56:25.957887 after 229.95 seconds
+[0m19:56:25.961130 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000209E212D220>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000209E2134A70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000209E1FEE9C0>]}
+[0m19:56:25.962453 [debug] [MainThread]: Flushing usage events
+[0m19:56:26.540633 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m19:58:51.418699 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000011168CA30E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000011169834050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000011169E67D90>]}
+
+
+============================== 19:58:51.440575 | 1a6b13fe-f4d0-4698-900d-1705b6bbdf05 ==============================
+[0m19:58:51.440575 [info ] [MainThread]: Running with dbt=1.10.4
+[0m19:58:51.446640 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\alexm\\.dbt', 'debug': 'False', 'warn_error': 'None', 'log_path': 'logs', 'version_check': 'True', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'log_format': 'default', 'invocation_command': 'dbt init analytics_warehouse', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'introspect': 'True', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m19:58:51.604483 [info ] [MainThread]: A project called analytics_warehouse already exists here.
+[0m19:58:51.609285 [debug] [MainThread]: Command `dbt init` succeeded at 19:58:51.608775 after 1.01 seconds
+[0m19:58:51.610446 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000011169E828B0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001116AEF9130>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000011169CCACF0>]}
+[0m19:58:51.612310 [debug] [MainThread]: Flushing usage events
+[0m19:58:52.038752 [debug] [MainThread]: An error was encountered while trying to flush usage events
