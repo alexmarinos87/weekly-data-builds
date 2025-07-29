@@ -1,13 +1,3 @@
-Below is a more **formal**, **concise**, and **corporate-style** README suitable for a bank or enterprise environment. The key changes are:
-
-- Removed informal language (emojis, “quick,” “Here’s,” etc.).  
-- Added a Table of Contents for easy navigation.  
-- Standardized heading levels and removed the “how to copy” section.  
-- Moved the date into a “Version” block.  
-- Clarified terminology and tightened phrasing.  
-
----
-
 ```markdown
 # Pandas-YF Star-Schema Risk Report
 
