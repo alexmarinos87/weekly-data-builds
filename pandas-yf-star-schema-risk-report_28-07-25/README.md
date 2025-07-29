@@ -12,7 +12,7 @@ A simple ETL + analytics pipeline that:
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```text
 pandas-yf-star-schema-risk-report_28-07-25/
@@ -28,14 +28,14 @@ pandas-yf-star-schema-risk-report_28-07-25/
 
 ---
 
-## ⚙️ Prerequisites
+## Prerequisites
 
 - Docker Desktop (or PostgreSQL 15+ installed locally)  
 - Python 3.9+
 
 ---
 
-## 🔧 Setup
+##  Setup
 
 1. **Clone repo**  
    ```bash
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS risk_metrics (
 
 ---
 
-## 🔄 Daily Workflow
+##  Daily Workflow
 
 1. **Refresh data & metrics**  
    ```bash
@@ -122,12 +122,17 @@ CREATE TABLE IF NOT EXISTS risk_metrics (
    make lint
    # Runs ruff + mypy
    ```
+## 📊 Risk-Adjusted Returns Chart
+
+Here's our Sharpe & Sortino ratios for 2023 visualized:
+
+![Risk-Adjusted Returns](docs/img/risk_chart.png)
 
 > You can schedule `make etl` daily via cron, Task Scheduler, or GitHub Actions.
 
 ---
 
-## 🛠️ Commands Reference
+##  Commands Reference
 
 | Command         | Description                                    |
 | --------------- | ---------------------------------------------- |
