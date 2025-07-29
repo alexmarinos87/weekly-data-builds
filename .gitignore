@@ -1,0 +1,32 @@
+# ───────────── Secrets ─────────────
+.env
+*.env
+
+# ───────────── Python artefacts ────
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+build/
+dist/
+
+# ───────────── Virtual-envs ─────────
+venv/
+.venv/
+env/
+etl_env/
+
+# ───────────── Jupyter ─────────────
+.ipynb_checkpoints/
+
+# ───────────── Data / outputs (edit) ─
+data/
+datasets/
+logs/
+reports/
+
+# ───────────── IDE / OS noise ───────
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
