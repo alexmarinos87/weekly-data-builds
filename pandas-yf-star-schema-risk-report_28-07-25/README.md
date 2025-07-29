@@ -1,69 +1,96 @@
-```markdown
-# Pandas-YF Star-Schema Risk Report
+Below is a more **formal**, **concise**, and **corporate-style** README suitable for a bank or enterprise environment. The key changes are:
 
-**Date:** 2025-07-28
-
-A simple ETL + analytics pipeline that:
-
-1. Downloads one year of **adjusted-close** prices from Yahoo! Finance.
-2. Calculates annualized Sharpe & Sortino ratios.
-3. Stores results in a PostgreSQL **star schema**.
-4. Generates a quick bar-chart comparison of risk-adjusted returns.
+- Removed informal language (emojis, “quick,” “Here’s,” etc.).  
+- Added a Table of Contents for easy navigation.  
+- Standardized heading levels and removed the “how to copy” section.  
+- Moved the date into a “Version” block.  
+- Clarified terminology and tightened phrasing.  
 
 ---
 
-##  Project Structure
+```markdown
+# Pandas-YF Star-Schema Risk Report
+
+**Version:** 2025-07-28
+
+A data-engineering pipeline that:
+
+1. Extracts one year of adjusted-close prices from Yahoo! Finance.  
+2. Computes annualized Sharpe and Sortino ratios.  
+3. Loads results into a PostgreSQL star schema.  
+4. Produces a bar-chart report of risk-adjusted returns.
+
+---
+
+## Table of Contents
+
+- [Project Structure](#project-structure)  
+- [Prerequisites](#prerequisites)  
+- [Setup](#setup)  
+- [Database Initialization](#database-initialization)  
+- [Workflow](#workflow)  
+- [Reporting](#reporting)  
+- [Command Reference](#command-reference)  
+- [Contributing](#contributing)  
+- [License](#license)  
+
+---
+
+## Project Structure
 
 ```text
 pandas-yf-star-schema-risk-report_28-07-25/
-├─ src/
-│  ├─ risk_metrics_etl.py      # ETL: fetch, compute, load
-│  └─ plot_risk_metrics.py     # Reporting: bar-chart plot
-├─ sql/
-│  └─ 001_init_star_schema.sql # Star schema DDL
-├─ notebooks/                  # Ad-hoc exploration
-├─ .env.example                # Template for environment vars
-└─ requirements.txt            # Python dependencies
+├── src/
+│   ├── risk_metrics_etl.py      # ETL: extract → transform → load
+│   └── plot_risk_metrics.py     # Reporting: generate bar-chart
+├── sql/
+│   └── 001_init_star_schema.sql # Star schema DDL
+├── notebooks/                   # Exploratory analysis
+├── docs/
+│   └── img/
+│       └── risk_chart.png       # Generated chart
+├── .env.example                 # Template for environment variables
+├── requirements.txt             # Python dependencies
+└── Makefile                     # Common tasks
 ```
 
 ---
 
 ## Prerequisites
 
-- Docker Desktop (or PostgreSQL 15+ installed locally)  
-- Python 3.9+
+- **Docker Desktop** (or PostgreSQL 15+ installed locally)  
+- **Python 3.9+**  
 
 ---
 
-##  Setup
+## Setup
 
-1. **Clone repo**  
+1. **Clone the repository**  
    ```bash
-   git clone <repo-url>
+   git clone <repository-url>
    cd pandas-yf-star-schema-risk-report_28-07-25
    ```
-
-2. **Environment variables**  
-   Copy and edit `.env` (never commit secrets):
+2. **Configure environment variables**  
    ```bash
    cp .env.example .env
    ```
-   | Variable   | Example     | Description             |
-   | ---------- | ----------- | ----------------------- |
-   | `DB_USER`  | `postgres`  | PostgreSQL user         |
-   | `DB_PASS`  | `pass`      | PostgreSQL password     |
-   | `DB_HOST`  | `localhost` | Host or container name  |
-   | `DB_PORT`  | `5432`      | Port                    |
-   | `DB_NAME`  | `finance`   | Database name           |
+   Edit `.env` with your database credentials:
 
-3. **Start PostgreSQL**  
+   | Variable   | Example     | Description            |
+   | ---------- | ----------- | ---------------------- |
+   | `DB_USER`  | `postgres`  | PostgreSQL username    |
+   | `DB_PASS`  | `pass`      | PostgreSQL password    |
+   | `DB_HOST`  | `localhost` | Host or container name |
+   | `DB_PORT`  | `5432`      | Port                   |
+   | `DB_NAME`  | `finance`   | Database name          |
+
+3. **Start PostgreSQL container**  
    ```bash
    docker run --name finance_pg \
      -e POSTGRES_PASSWORD=$DB_PASS \
      -p $DB_PORT:5432 \
      -d postgres:latest
    ```
-
 4. **Create and activate virtual environment**  
    ```bash
    python -m venv .venv
@@ -74,18 +101,18 @@ pandas-yf-star-schema-risk-report_28-07-25/
 
 ---
 
-## 🗄️ Initialize Database
+## Database Initialization
 
-Run the DDL script to create your star schema:
+Execute the schema DDL to create the star schema:
 
 ```bash
 make db-init
 # which runs:
-#   psql -h $DB_HOST -U $DB_USER -d $DB_NAME -f sql/001_init_star_schema.sql
+#   psql -h $DB_HOST -U $DB_USER -d $DB_NAME \
+#        -f sql/001_init_star_schema.sql
 ```
 
-**Schema**:
-
+**Schema**  
 ```sql
 -- tickers dimension
 CREATE TABLE IF NOT EXISTS tickers (
@@ -103,65 +130,61 @@ CREATE TABLE IF NOT EXISTS risk_metrics (
 
 ---
 
-##  Daily Workflow
+## Workflow
 
-1. **Refresh data & metrics**  
+1. **Refresh data and metrics**  
    ```bash
    make etl
-   # Equivalent to: python -m src.risk_metrics_etl
+   # Equivalent: python -m src.risk_metrics_etl
    ```
-
 2. **Generate report**  
    ```bash
    make plot
-   # Equivalent to: python -m src.plot_risk_metrics
+   # Equivalent: python -m src.plot_risk_metrics
    ```
-
-3. **(Optional) Lint & type-check**  
+3. **(Optional) Lint and type-check**  
    ```bash
    make lint
-   # Runs ruff + mypy
+   # Runs ruff and mypy on src/
    ```
-## 📊 Risk-Adjusted Returns Chart
-
-Here's our Sharpe & Sortino ratios for 2023 visualized:
-
-![Risk-Adjusted Returns](docs/img/risk_chart.png)
-
-> You can schedule `make etl` daily via cron, Task Scheduler, or GitHub Actions.
 
 ---
 
-##  Commands Reference
+## Reporting
 
-| Command         | Description                                    |
-| --------------- | ---------------------------------------------- |
-| `make db-init`  | Apply SQL schema to Postgres                  |
-| `make etl`      | Run ETL pipeline (fetch → compute → load)      |
-| `make plot`     | Generate bar-chart of Sharpe & Sortino ratios  |
-| `make lint`     | Run code quality checks (ruff & mypy)          |
+The annualized Sharpe and Sortino ratios for the period are plotted side-by-side:
+
+![Risk-Adjusted Returns Chart](docs/img/risk_chart.png)
+
+*Figure: Sharpe vs. Sortino ratios for selected tickers.*
+
+---
+
+## Command Reference
+
+| Command        | Description                                         |
+| -------------- | --------------------------------------------------- |
+| `make db-init` | Apply SQL schema to PostgreSQL                      |
+| `make etl`     | Run the ETL pipeline (extract → compute → load)     |
+| `make plot`    | Generate bar-chart of Sharpe & Sortino ratios       |
+| `make lint`    | Execute code quality checks (ruff & mypy)           |
 
 ---
 
 ## Contributing
 
-PRs are welcome! Please:
-
-1. Fork the repo.  
-2. Run `make lint && make etl` and ensure all checks pass.  
-3. Open a pull request with a clear description.
+1. Fork the repository.  
+2. Ensure code quality:  
+   ```bash
+   make lint && make etl
+   ```  
+3. Submit a pull request with a clear description of changes.
 
 ---
 
 ## License
 
-[MIT License](LICENSE)
+This project is released under the [MIT License](LICENSE).
 ```
 
-**How to copy without messing up formatting:**
-
-- **Use the “Copy code” button**: Hover over the code block and click the clipboard icon at top-right to copy the entire fenced block.
-- **Paste into a plain-text or Markdown editor** (e.g., VS Code, Sublime, Atom). Avoid pasting into rich-text editors like Word.
-- **Ensure the file extension is `.md`** so your editor highlights Markdown syntax correctly.
-- **If using GitHub’s web UI**, click “Raw” on the file view and then copy all contents directly.
-- **Verify indentation** and fence markers (` ```markdown ` and ` ``` `) are intact after pasting.
+Feel free to adjust any sections to match your internal style guide (e.g. add a “Contact” or “Security” section), but this layout and tone should align with typical banking/enterprise standards.
