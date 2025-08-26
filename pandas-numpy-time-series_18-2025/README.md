@@ -62,9 +62,7 @@ tests/
 
 ## Screenshot
 
-.. image:: dashboard_screenshot.png
-   :alt: Dashboard preview
-   :width: 600px
+![Dashboard preview](dashboard_screenshot.png)
 
 To generate this image, run the app, open the dashboard in a browser and save a screenshot as dashboard_screenshot.png in the project root.
 
