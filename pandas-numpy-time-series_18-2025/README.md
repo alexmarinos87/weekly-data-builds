@@ -89,9 +89,6 @@ To generate this image, run the app, open the dashboard in a browser and save a 
 * **Readable and Documented:** The project is well-commented and the file structure is intuitive
 
 ### Areas for Improvement
-* **Missing Data Sensitivity:** The growth calculation can be distorted by very small or missing values, producing unrealistic percentages
-
-* **Extreme Outliers:** Without capping or filtering, some growth rates may appear exaggerated (e.g. ±700%) especially when smoothing = 1
 
 * **No Data Validation Layer:** There is no formal schema or validation to ensure the CSV structure matches expectations before parsing
 
