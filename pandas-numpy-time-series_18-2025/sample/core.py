@@ -86,7 +86,7 @@ df = df.set_index([COUNTRY_COL, YEAR_COL])
 
 
 # Precompute raw GDP growth (%)
-df["GDP Growth (%)"] = df.groupby(level=0)[VALUE_COL].transform(np_growth)
+df["GDP Growth (%)"] = df[VALUE_COL]
 
 # Precompute per-country z-scores on raw growth (used for outliers)
 df["z"] = df.groupby(level=0)["GDP Growth (%)"].transform(zscore_nan)
