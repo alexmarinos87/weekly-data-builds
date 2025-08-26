@@ -1,0 +1,7 @@
+{
+  "name": "poetry",
+  "image": "pypkgs/vscode",
+  "extensions": [
+    "ms-python.python"
+  ]
+}

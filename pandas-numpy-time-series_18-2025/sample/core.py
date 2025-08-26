@@ -1,13 +1,17 @@
-# app.py
+# core.py
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+
 import numpy
 import pandas
-from pathlib import Path
-
 import dash
 import dash.dcc
 import dash.html
 import dash.dependencies
 import plotly.graph_objects
+from sample.helpers import np_growth, moving_average_nan, zscore_nan
+
 
 # ----------------------------
 # Config
@@ -20,7 +24,7 @@ YEAR_COL = "Year"
 # ----------------------------
 # Helpers (NumPy-based)
 # ----------------------------
-def np_growth(values: pandas.Series) -> numpy.ndarray:
+"""def np_growth(values: pandas.Series) -> numpy.ndarray:
     arr = values.to_numpy(dtype=float)
     out = numpy.empty_like(arr, dtype=float)
     out[:] = numpy.nan
@@ -49,7 +53,7 @@ def zscore_nan(series: pandas.Series) -> numpy.ndarray:
     sd = numpy.nanstd(x)
     if not numpy.isfinite(sd) or numpy.isclose(sd, 0.0):
         return numpy.full_like(x, numpy.nan)
-    return (x - mu) / sd
+    return (x - mu) / sd"""
 
 # ----------------------------
 # Load & preprocess once
